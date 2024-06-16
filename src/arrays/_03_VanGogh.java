@@ -1,4 +1,6 @@
 package arrays;
+import java.util.Random;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -8,7 +10,9 @@ import processing.core.PImage;
  * In this class:
  * 1. Declare a PImage array variable as a member variable in this class.
  *    DO NOT initialize it.
- * 
+ */
+
+/*
  * 2. In the initializePaintings() method, initialize the PImage array to
  *    contain 4 images.
  * 
@@ -50,13 +54,21 @@ public class _03_VanGogh extends PApplet {
     PImage canvas;
     PImage paintbrushCursor;
     boolean initializeCanvas = true;
-    
+    PImage[] paintings = new PImage[4];
+int whichOne;
+Random r = new Random();
     /*
      * Write your code below
      */
     Brush brush;
     
     void initializePaintings() {
+    	whichOne = r.nextInt(4);
+paintings[0] = loadImage("starryNight.jpg");
+paintings[1] = loadImage("strawHatPortrait.jpg");
+paintings[2] = loadImage("wheatField.jpg");
+paintings[3] = loadImage("painterOnRoad.jpg");
+brush.setNewPainting(paintings[whichOne]);
         
     }
     
@@ -105,7 +117,7 @@ public class _03_VanGogh extends PApplet {
                 image(canvas, 0, 0);
             } else if (key == 32) {
                 // SPACE key pressed--go to next painting
-                selectNextPainting();
+                initializePaintings();
 
                 //canvas.resize(width, height);
                 initializeCanvas = true;
